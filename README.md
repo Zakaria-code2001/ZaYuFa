@@ -145,6 +145,50 @@ Backend: http://localhost:3000
 Frontend: http://localhost:4200
 Your Node.js API will be accessible at port 3000, and your Angular app at port 4200.
 
+
+## 🐳 Docker Deployment
+
+You can also run both frontend and backend services using Docker:
+
+### Prerequisites
+
+- Docker and Docker Compose installed on your machine
+
+### Running with Docker
+
+1. Ensure Docker is running on your system:
+   - On macOS: start Docker Desktop
+   - On Linux: verify Docker service is active (`systemctl status docker`)
+   - On Windows: start Docker Desktop
+
+2. From the project root directory, build and start the containers:
+
+```sh
+docker-compose up -d
+```
+
+This will:
+- Start the Express backend on http://localhost:3000
+- Start the Angular frontend on http://localhost:4200
+- Set up auto-reload for both services when code changes
+
+### Managing Docker containers
+
+```sh
+# View running containers
+docker-compose ps
+
+# View container logs
+docker-compose logs
+
+# Stop the containers
+docker-compose down
+
+# Rebuild containers after dependencies change
+docker-compose up -d --build
+```
+```
+
 ### When you perform an Angular production build (ng build) and then run your Express server, confirm the full project is working by accessing it through the backend port (e.g., http://localhost:3000)
 
 ## 5️⃣ Troubleshooting
@@ -156,3 +200,4 @@ yaml
 Copy
 
 ---
+
