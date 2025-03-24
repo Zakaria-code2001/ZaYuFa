@@ -1,0 +1,22 @@
+<mat-toolbar color="primary" class="mat-elevation-z2">
+  <!-- Left: Logo -->
+  <span class="logo">
+    <a routerLink="/" style="text-decoration: none; color: white;">ZaYuFa</a>
+  </span>
+
+  <!-- Spacer: Pushes everything after it to the right -->
+  <span class="spacer"></span>
+
+  <!-- Right: Auth buttons or greeting -->
+  <ng-container *ngIf="!isLoggedIn(); else loggedInBlock">
+    <button mat-button routerLink="/login">Login</button>
+    <button mat-button routerLink="/signup">SignUp</button>
+  </ng-container>
+
+  <ng-template #loggedInBlock>
+    <!-- 👋 Hello username + Logout button -->
+    <span style="margin-right: 16px;">Hello, {{ getUsername() }} 👋</span>
+    <button mat-button routerLink="/recording">Recordings</button>
+    <button mat-button (click)="logout()">Logout</button>
+  </ng-template>
+</mat-toolbar>

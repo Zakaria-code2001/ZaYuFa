@@ -1,0 +1,65 @@
+<div class="signup-container">
+    <mat-card>
+      <h2>Sign Up</h2>
+
+      <form (ngSubmit)="onSignup(signupForm)" #signupForm="ngForm" novalidate>
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Username</mat-label>
+            <input
+              matInput
+              type="text"
+              name="username"
+              [(ngModel)]="signupData.username"
+              #username="ngModel"
+              required
+            />
+            <mat-error *ngIf="username.errors?.['required']">Username is required</mat-error>
+          </mat-form-field>
+          
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            type="email"
+            name="email"
+            [(ngModel)]="signupData.email"
+            #email="ngModel"
+            required
+            email
+          />
+          <mat-error *ngIf="email.errors?.['required']">Email is required</mat-error>
+          <mat-error *ngIf="email.errors?.['email']">Invalid email format</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            type="password"
+            name="password"
+            [(ngModel)]="signupData.password"
+            #password="ngModel"
+            required
+            pattern="^(?=.*[A-Za-z])(?=.*\d).{6,}$"
+
+          />
+          <mat-error *ngIf="password.errors?.['required']">Password is required</mat-error>
+          <mat-error *ngIf="password.errors?.['pattern']">
+            Password must be at least 6 characters and include both letters and numbers
+          </mat-error>
+        </mat-form-field>
+  
+        <button mat-raised-button color="primary" type="submit" [disabled]="!signupForm.valid">
+            Sign Up
+          </button>
+          
+  
+        <p class="login-link">
+          Already have an account? <a routerLink="/login">Login</a>
+        </p>
+        <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+        <div *ngIf="successMessage" class="success">{{ successMessage }}</div>
+      </form>
+    </mat-card>
+  </div>
+  

@@ -1,0 +1,22 @@
+<div class="upload-container">
+    <h2>➕ Upload a New Recording</h2>
+  
+    <input type="file" (change)="onUploadFile($event)" />
+    <p *ngIf="uploadFile" class="selected-file">Selected: {{ uploadFile.name }}</p>
+    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+  
+    <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!uploadFile">
+      Upload Recording
+    </button>
+  </div>
+  
+  <div class="recordings-container" *ngIf="recordings.length > 0">
+    <h3>🎵 Your Recordings</h3>
+    <ul>
+      <li *ngFor="let recording of recordings">
+        <span>{{ recording.name }}</span>
+        <audio controls [src]="recording.url"></audio>
+      </li>
+    </ul>
+  </div>
+  
